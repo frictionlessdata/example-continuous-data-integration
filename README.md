@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/frictionlessdata/ex-continuous-data-integration.svg?branch=master)](https://travis-ci.org/frictionlessdata/ex-continuous-data-integration)
+
 Continuous Data Integration!
 
 1. have a data package
