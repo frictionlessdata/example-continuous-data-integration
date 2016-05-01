@@ -24,7 +24,18 @@ def check_datapackage_json():
         pass
 
 def check_json_schema():
-    pass
+    report_limit = 1000
+    row_limit = 100000
+    data_format = 'csv'
+    data = dp.metadata['resources'][0]['path']
+    schema = dp.metadata['resources'][0]['schema']
+    print(schema)
+    processor = processors.SchemaProcessor(schema=schema,
+                                           format=data_format,
+                                           row_limit=row_limit,
+                                           report_limit=report_limit)
+    valid, report, data = processor.run(data)
+    assert(valid == True)
 
 def check_structure():
     report_limit = 1000
@@ -35,13 +46,12 @@ def check_structure():
         report_limit=report_limit)
 
     data = dp.metadata['resources'][0]['path']
-
     valid, report, data = processor.run(data)
 
     valid_msg = 'Well done! The data is valid :)\n'.upper()
     invalid_msg = 'Oops.The data is invalid :(\n'.upper()
 
-    print(valid_msg)
+    assert(valid == True)
 
 def check_data_schema():
     processor = processors.SchemaProcessor(schema=schema, format=format,
@@ -53,7 +63,8 @@ def check_data_schema():
 def run():
     # check_datapackage_json()
     check_structure()
-
+    check_json_schema()
+    
 
 if __name__ == '__main__':
     run()
