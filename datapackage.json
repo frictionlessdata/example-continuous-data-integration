@@ -17,12 +17,12 @@
             "description": ""
           },
           {
-            "name": " Country",
+            "name": "Country",
             "type": "string",
             "description": ""
           },
           {
-            "name": " Number",
+            "name": "Number",
             "type": "number",
             "description": ""
           }

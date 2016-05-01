@@ -5,67 +5,68 @@ from __future__ import unicode_literals
 
 import os
 import json
+import unittest
+
 from goodtables import pipeline as _pipeline
 from goodtables import processors
-
 import datapackage
 
 # TODO: consistent API for dp validate
 # errors = dp.validate()
 # if errors: ...
 
+report_limit = 1000
+row_limit = 100000
 dp = datapackage.DataPackage('./datapackage.json')
 
-def check_datapackage_json():
-    try:
-        dp.validate()
-    except datapackage.exceptions.ValidationError as e:
-        # Handle the ValidationError
-        pass
+class TestData(unittest.TestCase):
 
-def check_json_schema():
-    report_limit = 1000
-    row_limit = 100000
-    data_format = 'csv'
-    data = dp.metadata['resources'][0]['path']
-    schema = dp.metadata['resources'][0]['schema']
-    print(schema)
-    processor = processors.SchemaProcessor(schema=schema,
-                                           format=data_format,
-                                           row_limit=row_limit,
-                                           report_limit=report_limit)
-    valid, report, data = processor.run(data)
-    assert(valid == True)
+    def check_datapackage_json(self):
+        try:
+            dp.validate()
+        except datapackage.exceptions.ValidationError as e:
+            # Handle the ValidationError
+            pass
 
-def check_structure():
-    report_limit = 1000
-    row_limit = 100000
-    data_format = 'csv'
-    processor = processors.StructureProcessor(format=data_format, fail_fast=False,
-        row_limit=row_limit,
-        report_limit=report_limit)
+    def test_structure(self):
+        # TODO: infer from data package format field (and default to csv)
+        data_format = 'csv'
+        processor = processors.StructureProcessor(format=data_format, fail_fast=False,
+            row_limit=row_limit,
+            report_limit=report_limit)
 
-    data = dp.metadata['resources'][0]['path']
-    valid, report, data = processor.run(data)
+        data = dp.metadata['resources'][0]['path']
+        valid, report, data = processor.run(data)
 
-    valid_msg = 'Well done! The data is valid :)\n'.upper()
-    invalid_msg = 'Oops.The data is invalid :(\n'.upper()
+        output_format = 'txt'
+        exclude = ['result_context', 'processor', 'row_name', 'result_category',
+                                   'column_index', 'column_name', 'result_level']
+        out = report.generate(output_format, exclude=exclude)
 
-    assert(valid == True)
+        self.assertTrue(valid, out)
 
-def check_data_schema():
-    processor = processors.SchemaProcessor(schema=schema, format=format,
-        fail_fast=fail_fast,
-        row_limit=row_limit,
-        report_limit=report_limit)
-    valid, report, data = processor.run(data)
+    # check the data against the schema
+    def test_schema(self):
+        data_format = 'csv'
+        data = dp.metadata['resources'][0]['path']
+        schema = dp.metadata['resources'][0]['schema']
 
-def run():
-    # check_datapackage_json()
-    check_structure()
-    check_json_schema()
-    
+        # TODO: check JTS is valid JTS before we go on
+
+        processor = processors.SchemaProcessor(schema=schema,
+                                               format=data_format,
+                                               row_limit=row_limit,
+                                               report_limit=report_limit)
+        valid, report, data = processor.run(data)
+
+        output_format = 'txt'
+        exclude = ['result_context', 'processor', 'row_name', 'result_category',
+                                   'column_name', 'result_id', 'result_level']
+        out = report.generate(output_format, exclude=exclude)
+
+        self.assertTrue(valid, out)
+
 
 if __name__ == '__main__':
-    run()
+    unittest.main()
 
