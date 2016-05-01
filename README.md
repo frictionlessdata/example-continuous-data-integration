@@ -35,26 +35,19 @@ Results in:
 
 ```
 +----------------+---------------+-------------+-------------------------------------------------------+
-| result_name    | result_id     |   row_index | result_message
-|
+| result_name    | result_id     |   row_index | result_message                                        |
 +================+===============+=============+=======================================================+
-| Missing Header | structure_001 |           0 | Headers column is empty.
-|
+| Missing Header | structure_001 |           0 | Headers column is empty.                              |
 +----------------+---------------+-------------+-------------------------------------------------------+
-| Defective Row  | structure_003 |           0 | The row dimensions are
-incorrect compared to headers. |
+| Defective Row  | structure_003 |           0 | The row dimensions are incorrect compared to headers. |
 +----------------+---------------+-------------+-------------------------------------------------------+
-| Defective Row  | structure_003 |           1 | The row dimensions are
-incorrect compared to headers. |
+| Defective Row  | structure_003 |           1 | The row dimensions are incorrect compared to headers. |
 +----------------+---------------+-------------+-------------------------------------------------------+
-| Defective Row  | structure_003 |           2 | The row dimensions are
-incorrect compared to headers. |
+| Defective Row  | structure_003 |           2 | The row dimensions are incorrect compared to headers. |
 +----------------+---------------+-------------+-------------------------------------------------------+
-| Empty Row      | structure_005 |           3 | Row is empty.
-|
+| Empty Row      | structure_005 |           3 | Row is empty.                                         |
 +----------------+---------------+-------------+-------------------------------------------------------+
-| Defective Row  | structure_003 |           3 | The row dimensions are
-incorrect compared to headers. |
+| Defective Row  | structure_003 |           3 | The row dimensions are incorrect compared to headers. |
 +----------------+---------------+-------------+-------------------------------------------------------+
 ```
 
@@ -73,13 +66,10 @@ Results in:
 
 ```
 +----------------+----------------+-------------+-------------------------------------------------------------+
-| result_name    |   column_index |   row_index | result_message
-|
+| result_name    |   column_index |   row_index | result_message                                              |
 +================+================+=============+=============================================================+
-| Incorrect Type |              0 |           2 | The value "2015-02" in column
-"Date" is not a valid Date.   |
+| Incorrect Type |              0 |           2 | The value "2015-02" in column "Date" is not a valid Date.   |
 +----------------+----------------+-------------+-------------------------------------------------------------+
-| Incorrect Type |              2 |           2 | The value "x23.5" in column
-"Number" is not a valid Number. |
+| Incorrect Type |              2 |           2 | The value "x23.5" in column "Number" is not a valid Number. |
 +----------------+----------------+-------------+-------------------------------------------------------------+
 ```
