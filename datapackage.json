@@ -1,0 +1,33 @@
+{
+  "name": "fd-continuous-data-integration",
+  "title": "",
+  "version": "0.1.0",
+  "license": "ODC-PDDL-1.0",
+  "resources": [
+    {
+      "name": "data",
+      "path": "data/data.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "Date",
+            "type": "date",
+            "description": ""
+          },
+          {
+            "name": " Country",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": " Number",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      }
+    }
+  ]
+}
