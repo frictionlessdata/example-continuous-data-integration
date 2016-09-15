@@ -1,6 +1,6 @@
 Continuous Data Integration!
 
-[![Build Status](https://img.shields.io/travis/frictionlessdata/ex-continuous-data-integration.svg?branch=master&label=datapackage%20validation)](https://travis-ci.org/frictionlessdata/ex-continuous-data-integration)
+[![Build Status](https://img.shields.io/travis/frictionlessdata/example-continuous-data-integration.svg?branch=master&label=datapackage%20validation)](https://travis-ci.org/frictionlessdata/example-continuous-data-integration)
 
 It goes like this:
 
